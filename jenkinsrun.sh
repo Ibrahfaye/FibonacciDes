@@ -2,7 +2,7 @@
 mkdir shellbuild 
 cd shellbuild
 pip install conan
-conan install ..
+sudo conan install ..
 cmake ..
 cmake --build .
 ./FibonacciDesTest
