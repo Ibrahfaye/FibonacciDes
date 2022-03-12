@@ -2,3 +2,5 @@ Run_Release
 Run_Debug
 shellbuild
 *.txt.user
+.idea
+build

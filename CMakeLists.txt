@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 project(FibonacciDes)
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#[[
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -8,6 +10,20 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(googletest)
+]]
+
+# Execution conan
+option(BUILD_EXEC_CONAN_INSTALL "execute conan install step" ON)
+if(${BUILD_EXEC_CONAN_INSTALL})
+    execute_process(COMMAND conan install ${CMAKE_SOURCE_DIR}) # Execution conan install
+    include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
+endif()
+
+find_package(GTest REQUIRED)
+include_directories(${GTest_INCLUDE_DIRS} )
+#find_package(GMock REQUIRED)
+#set(GTEST_TARGET GTest::GTest GTest::Main)
+#set(GMOCK_TARGET GMock::GMock GMock::Main)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -21,8 +37,9 @@ set(srcfiles  Fibonaccisrc/Interfaces/IFibonacciClient.h
 add_executable(FibonacciDesTest maintest.cpp Tests/FibonacciClientTest.cpp ${srcfiles})
 target_link_libraries(
         FibonacciDesTest
-        gtest_main
-        gmock_main
+		gmock
+		gtest
+		GTest::gtest GTest::gtest_main
 )
-include(GoogleTest)
-gtest_discover_tests(FibonacciDesTest)
+#include(GoogleTest)
+#gtest_discover_tests(FibonacciDesTest)
