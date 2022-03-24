@@ -1,7 +1,7 @@
 #!/bin/sh
 mkdir -p shellbuild 
 cd shellbuild
-pip install conan
+pip3 install conan
 #sudo conan install ..
 cmake ..
 cmake --build .
