@@ -15,7 +15,7 @@ FetchContent_MakeAvailable(googletest)
 # Execution conan
 option(BUILD_EXEC_CONAN_INSTALL "execute conan install step" ON)
 #if(${BUILD_EXEC_CONAN_INSTALL})
-    execute_process(COMMAND sudo conan install ${CMAKE_SOURCE_DIR}) # Execution conan install
+    execute_process(COMMAND conan install ${CMAKE_SOURCE_DIR}) # Execution conan install
     include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 #endif()
 #[[
