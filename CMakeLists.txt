@@ -18,7 +18,7 @@ option(BUILD_EXEC_CONAN_INSTALL "execute conan install step" ON)
     execute_process(COMMAND conan install ${CMAKE_SOURCE_DIR}) # Execution conan install
     include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 #endif()
-
+#[[
 find_package(GTest REQUIRED)
 include_directories(${GTest_INCLUDE_DIRS} )
 #find_package(GMock REQUIRED)
@@ -41,5 +41,6 @@ target_link_libraries(
 		gtest
 		GTest::gtest GTest::gtest_main
 )
+]]
 #include(GoogleTest)
 #gtest_discover_tests(FibonacciDesTest)
